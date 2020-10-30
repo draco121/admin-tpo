@@ -1,0 +1,97 @@
+<div class="container-fluid">
+  <div class="row bg-success">
+    <div class="col-lg-6 justify-content-around form-inline">
+      <label style="margin: 10px;">select batch:</label>
+      <select class="form-control" [(ngModel)]='currentcollection'>
+        <option disabled value="">select one</option>
+        <option *ngFor='let c of activecollections' value="{{c}}">{{c}}</option>
+      </select>
+      <button class="btn btn-primary" (click)='syncdata()'>sync data</button>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-lg-3">
+      <li class="list-group-item active">
+        select attributes
+      </li>
+      <ul class='list-group'>
+        <li class="list-group-item " *ngFor='let attribute of attributes;let i=index'>
+          <input type="checkbox" [checked]='ischecked(i)' (change)='attchange(i)' id="{{i}}" style="margin: 10px;"><label for="{{i}}"><b> {{attribute}}</b></label>
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-3">
+      <div class="card" style="padding: 10px;">
+        <div class='card-title'>use filters</div>
+        <div class="form-group">
+          <label for="branch"><b>branch</b></label>
+          <select id='branch' class="form-control" [(ngModel)]='filters.branch'>
+            <option selected value="">select one</option>
+            <option value='CSE'>COMPUTER SCIENCE AND ENGINEERING</option>
+            <option value='CE'>CIVIL ENGINEERING</option>
+            <option value='ME'>MECHANICAL ENGINEERING</option>
+            <option value='IT'>INFORMATION TECHNOLOGY</option>
+            <option value="EE">ELECTRICAL ENGINEERING</option>
+            <option value='ETE'>ELECTRONICS AND TELECOMMUNICATION ENGINEERING</option>
+            <option value='IP'>INDUSTRIAL PRODUCTION</option>
+            <option value='APPLIED-PHYSICS'>APPLIED PHYSICS</option>
+            <option value='APPLIED-MATHEMATICS'>APPLIED MATHEMATICS</option>
+            <option value='APPLIED-CHEMISTRY'>APPLIED CHEMISTRY</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="course"><b>course</b></label>
+          <select id='course' class="form-control" [(ngModel)]='filters.course'>
+            <option selected value="">select one</option>
+            <option value='BTECH'>B.TECH</option>
+            <option value='ME'>ME</option>
+            <option value='MCA'>MCA</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="cgpa"><b>minimum cgpa</b></label>
+          <small>(including lower bound)</small>
+          <input type="text" id="cgpa" class="form-control" [(ngModel)]='filters.cgpa'>
+        </div>
+        <div class="form-group">
+          <label for="tenth"><b>minimum tenth percentage</b></label>
+          <small>(including lower bound)</small>
+          <input type="text" id="tenth" class="form-control" [(ngModel)]='filters.minx'>
+        </div>
+        <div class="form-group">
+          <label for="twelth"><b>minimum twelth percentage</b></label>
+          <small>(including lower bound)</small>
+          <input type="text" id="twelth" class="form-control" [(ngModel)]='filters.minxii'>
+        </div>
+        <div class="form-group">
+          <label for="diploma"><b>minimum diploma percentage</b></label>
+          <small>(including lower bound)</small>
+          <input type="text" id="diploma" class="form-control" [(ngModel)]='filters.mind'>
+        </div>
+        <div class="form-group">
+          <label for="backlog"><b>minimum active backlogs</b></label>
+          <small>(including lower bound)</small>
+          <input type="text" id="backlog" class="form-control" [(ngModel)]='filters.activebacklog'>
+        </div>
+        <button type="button" class='btn btn-sm btn-outline-primary' (click)='runquery()'>submit</button>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-row">
+          <div class="col">
+            <input type="text" placeholder="type your custom sql here" class="form-control" [(ngModel)]='customquery'>
+          </div>
+          <div class="col-lg-1">
+            <button type="button"[disabled]='customquery ===""' class="btn btn btn-outline-success">run</button>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <app-table></app-table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

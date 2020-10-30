@@ -1,0 +1,72 @@
+<div class="card" *ngIf='control.collectionname' style="padding: 10px;">
+  <div class="card-title text-center">
+    <h4>{{control.collectionname}}</h4>
+    <small class="text-success" *ngIf='issaved'>saved</small>
+  </div>
+  <div class="form-row">
+    <div class="col">
+      <p><b>collection status: </b></p>
+    </div>
+    <div class="col">
+        <p *ngIf='control.isactive' class="text-success" style='margin-left: 10%;'>activated</p>
+        <p *ngIf='!control.isactive' class="text-danger" style='margin-left: 10%;'>deactivated</p>
+    </div>
+    <div class="col">
+        <button (click)='changeone()' *ngIf='control.isactive' class="btn btn-danger btn-sm" style='margin-left: 10%;'>deactivate</button>
+        <button (click)='changeone()' *ngIf='!control.isactive' class="btn btn-success btn-sm" style='margin-left: 10%;'>activate</button>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col">
+      <p><b>registration form: </b></p>
+    </div>
+    <div class="col">
+        <p *ngIf='!control.master_lock' class="text-success" style='margin-left: 10%;'>opened</p>
+        <p *ngIf='control.master_lock' class="text-danger" style='margin-left: 10%;'>closed</p>
+    </div>
+    <div class="col">
+        <button (click)='changetwo()' *ngIf='!control.master_lock' class="btn btn-danger btn-sm" style='margin-left: 10%;'>close</button>
+        <button (click)='changetwo()' *ngIf='control.master_lock' class="btn btn-success btn-sm" style='margin-left: 10%;'>open</button>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col">
+      <p><b>updation form: </b></p>
+    </div>
+    <div class="col">
+        <p *ngIf='!control.secondary_lock' class="text-success" style='margin-left: 10%;'>opened</p>
+        <p *ngIf='control.secondary_lock' class="text-danger" style='margin-left: 10%;'>closed</p>
+    </div>
+    <div class="col">
+        <button (click)='changethree()' *ngIf='control.secondary_lock' class="btn btn-success btn-sm " style='margin-left: 10%;'>open</button>
+        <button (click)='changethree()' *ngIf='!control.secondary_lock' class="btn btn-danger btn-sm " style='margin-left: 10%;'>close</button>
+    </div>
+  </div>
+    <button class='btn btn-danger' *ngIf='iscontrolchanged' data-toggle="modal" data-target="#applychanges">apply changes</button>
+
+
+  <div class="modal fade" id="applychanges" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Apply Changes</h5>
+          <button type="button" class="close" id="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            are you sure you want to apply these changes to collection {{control.collectionname}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success btn-sm" (click)='savecontrols()'>Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="alert alert-success" *ngIf='!control.collectionname'>
+  <h3>Select collection from the list</h3>
+</div>

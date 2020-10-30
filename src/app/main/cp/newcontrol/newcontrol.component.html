@@ -1,0 +1,21 @@
+<button class="btn btn-outline-primary btn-sm" style="margin: 10px;" (click)='shownewform = true'><i class="fa fa-plus" aria-hidden="true"></i> New</button>
+<div class="alert alert-success" *ngIf='controlladded'>
+  <p>new collection added successfully</p>
+</div>
+<div class="card" style='padding:10px;' *ngIf='shownewform'>
+  <div class="form-row">
+    <div class="col">
+      <label><b>collection name: </b></label>
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="e.g 2025" [(ngModel)]='collectionname'>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-primary" (click)='add()'>add</button>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-secondary" (click)='shownewform = false'>discard</button>
+    </div>
+  </div>
+
+</div>

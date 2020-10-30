@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "test-4bf63": {
+      "hosting": {
+        "admin-tpo": [
+          "test-4bf63"
+        ]
+      }
+    }
+  }
+}

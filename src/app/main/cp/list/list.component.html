@@ -1,0 +1,6 @@
+<div class='list-group' >
+  <button type="button" class="list-group-item list-group-item-action active">
+    Collections
+  </button>
+  <button *ngFor='let control of list' type="button" class="list-group-item list-group-item-action" (click)='changecontrol(control)'>{{control.collectionname}}</button>
+</div>
